@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = %q{Integrates Blitline image processing with Carrierwave}
   spec.description   = %q{Integrates the carrierwave gem with Blitline image API. (Still under development)}
-  spec.homepage      = "https://github.com:KatanaCode/carrierwave-blitline"
+  spec.homepage      = "https://github.com/KatanaCode/carrierwave-blitline"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
