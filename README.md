@@ -4,8 +4,6 @@ This gem is still under construction but it basically works in its current form.
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
 Install it with these other Carrierwave gems:
 
     gem "carrierwave"
