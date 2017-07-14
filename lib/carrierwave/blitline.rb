@@ -57,7 +57,7 @@ module CarrierWave
         blitline_service.post_jobs
       rescue => e
         Rails.logger.tagged("Blitline") do |logger|
-          logger.error "ERROR: Blitline processing error for #{model.class.name}"
+          logger.error "ERROR: Blitline processing error for #{model.class.name}\n#{e.message}"
         end
       end
     end
