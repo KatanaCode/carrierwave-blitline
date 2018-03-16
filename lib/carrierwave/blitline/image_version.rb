@@ -1,6 +1,5 @@
 module CarrierWave
   module Blitline
-
     # An instance of an ImageVersion for Blitline API.
     #
     #   When the process() version is called in an Uploader class, we store the version
@@ -48,7 +47,7 @@ module CarrierWave
         if primary_function.nil?
           self.primary_function    = function
         else
-          self.secondary_functions << function
+          secondary_functions << function
         end
       end
 
@@ -65,7 +64,5 @@ module CarrierWave
       end
 
     end
-
   end
-
 end
