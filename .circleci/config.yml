@@ -1,0 +1,112 @@
+# Ruby CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-ruby/ for more details
+#
+version: 2
+jobs:
+  build:
+    environment:
+      CC_TEST_REPORTER_ID: 6f037067f424fa130712bb6a48398f25de184f86997b11990abbde61f2b07d7a
+
+    docker:
+      # specify the version you desire here
+       - image: circleci/ruby:2.5
+
+    working_directory: ~/carrierwave-blitline
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - run:
+          name: Download CodeClimate
+          command: curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+
+      - run:
+          name: "Change Permissions on CodeClimate"
+          command: chmod +x ./cc-test-reporter
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: "Prepare CC test reporter"
+          command: ./cc-test-reporter before-build
+
+      # run tests!
+      - run:
+          name: Run Rspec
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)"
+
+            bundle exec rspec --format progress \
+                            --format RspecJunitFormatter \
+                            --out /tmp/test-results/rspec.xml \
+                            --format progress \
+                            $TEST_FILES
+
+      - run:
+          name: "Report CodeClimate"
+          command: ./cc-test-reporter after-build --exit-code 0
+
+      # collect reports
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+          destination: test-results
+  audit:
+    docker:
+      # specify the version you desire here
+       - image: circleci/ruby:2.5
+
+    working_directory: ~/carrierwave-blitline
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "Gemfile.lock" }}
+          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+      - save_cache:
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
+      - run:
+          name: Bunder Audit
+          command: gem install bundle-audit && bundle-audit check --update
+
+      - run:
+          name: Code Style Check
+          command: rubocop lib --display-style-guide -c ./.rubocop.yml
+
+workflows:
+  version: 2
+  build_and_audit:
+    jobs:
+      - build
+      - audit
