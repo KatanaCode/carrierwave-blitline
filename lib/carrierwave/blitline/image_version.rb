@@ -47,7 +47,7 @@ module CarrierWave
         if primary_function.nil?
           self.primary_function    = function
         else
-          self.secondary_functions << function
+          secondary_functions << function
         end
       end
 

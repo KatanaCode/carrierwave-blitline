@@ -1,6 +1,4 @@
 inherit_gem:
-  rubocop-rails:
-    - config/rails.yml
 
 AllCops:
   UseCache: true
@@ -36,7 +34,7 @@ Style/EmptyMethod:
   Enabled: false
 
 Rails:
-  Enabled: true
+  Enabled: false
 
 Metrics/LineLength:
   Max: 90

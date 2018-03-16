@@ -50,28 +50,36 @@ module CarrierWave
             "s3_destination": {
               "bucket": {
                 "name":     ENV["S3_BUCKET_NAME"],
-                "location": ENV["S3_BUCKET_REGION"],
+                "location": ENV["S3_BUCKET_REGION"]
               },
               "key": file_name_for_version(version)
             }
           },
-          "functions": secondary_functions.map { |function|
-            {
-              "name": function.name,
-              "params": params_for_function(function.name, function.params),
-              "save": {
-                "image_identifier": unique_identifier,
-                "s3_destination": {
-                  "bucket": {
-                    "name":     ENV["S3_BUCKET_NAME"],
-                    "location": ENV["S3_BUCKET_REGION"],
-                  },
-                  "key": file_name_for_version(version)
-                }
+          "functions": functions_hashes
+        }
+      end
+
+
+      private
+
+
+      def functions_hashes
+        secondary_functions.map do |function|
+          {
+            "name": function.name,
+            "params": params_for_function(function.name, function.params),
+            "save": {
+              "image_identifier": unique_identifier,
+              "s3_destination": {
+                "bucket": {
+                  "name":     ENV["S3_BUCKET_NAME"],
+                  "location": ENV["S3_BUCKET_REGION"]
+                },
+                "key": file_name_for_version(version)
               }
             }
           }
-        }
+        end
       end
 
     end
