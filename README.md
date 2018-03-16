@@ -1,3 +1,12 @@
+[![Latest Version](https://img.shields.io/gem/v/carrierwave-blitline.svg)](https://rubygems.org/gems/carrierwave-blitline)
+[![CircleCI](https://circleci.com/gh/KatanaCode/carrierwave-blitline.svg?style=svg)](https://circleci.com/gh/KatanaCode/carrierwave-blitline)
+[![Downloads](https://img.shields.io/github/downloads/katanacode/carrierwave-blitline/total.svg)](https://img.shields.io/github/downloads/katanacode/carrierwave-blitline/total.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/fdd8cffc25d6002a68df/maintainability)](https://codeclimate.com/github/KatanaCode/carrierwave-blitline/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/fdd8cffc25d6002a68df/test_coverage)](https://codeclimate.com/github/KatanaCode/carrierwave-blitline/test_coverage)
+
+
+---
+
 # Carrierwave::Blitline
 
 This gem is still under construction but it basically works in its current form.
