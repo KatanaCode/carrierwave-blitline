@@ -1,5 +1,3 @@
-[![CircleCI](https://circleci.com/gh/KatanaCode/carrierwave-blitline/tree/master.svg?style=svg)](https://circleci.com/gh/KatanaCode/carrierwave-blitline/tree/master)
-
 [![Latest Version](https://img.shields.io/gem/v/carrierwave-blitline.svg)](https://rubygems.org/gems/carrierwave-blitline)
 [![CircleCI](https://circleci.com/gh/KatanaCode/carrierwave-blitline.svg?style=svg)](https://circleci.com/gh/KatanaCode/carrierwave-blitline)
 [![Downloads](https://img.shields.io/github/downloads/katanacode/carrierwave-blitline/total.svg)](https://img.shields.io/github/downloads/katanacode/carrierwave-blitline/total.svg)
