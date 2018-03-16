@@ -161,7 +161,7 @@ module CarrierWave
       end
 
       def blitline_image_versions
-        @blitline_versions ||= [ImageVersion.new(nil)]
+        @blitline_image_versions ||= [ImageVersion.new(nil)]
       end
 
       def process_via_blitline(value = true)
