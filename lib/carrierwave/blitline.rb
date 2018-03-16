@@ -1,9 +1,9 @@
-# From the Blitline gem
 module CarrierWave
   module Blitline
-
+    # From the Blitline gem
     require "blitline"
-
+    require "active_support/core_ext/module/delegation"
+    require "active_support/concern"
     require "carrierwave/blitline/version"
     require "carrierwave/blitline/class_methods"
     require "carrierwave/blitline/image_version"
@@ -92,7 +92,7 @@ module CarrierWave
     #
     # Returns a boolean
     def rip_can_begin_processing?
-      process_via_blitline? and not self.class.name.include? "::"
+      process_via_blitline? && (not self.class.name.include? "::")
     end
 
     def filename
@@ -118,26 +118,50 @@ module CarrierWave
     end
 
     def params_for_no_op(*args)
-      return {}
+      {}
     end
 
     def params_for_resize_to_fill(*args)
       args.flatten!
-      return { width: args.first, height: args.last }
+      { width: args.first, height: args.last }
     end
 
     def params_for_resize_to_fit(*args)
       args.flatten!
-      return { width: args.first, height: args.last }
+      { width: args.first, height: args.last }
     end
 
 
     private
 
 
-    def blitline_service
-      @blitline_service ||= ::Blitline.new
-    end
+      def blitline_service
+        @blitline_service ||= ::Blitline.new
+      end
 
+      module ClassMethods
+        def version(name, &block)
+          blitline_image_versions << ImageVersion.new(name, &block)
+          # If process_via_blitline? is true, we still want to register the version with
+          #  the Uploader, but we don't want to define the conversions.
+          if process_via_blitline?
+            super(name) {}
+          else
+            super(name, &block)
+          end
+        end
+
+        def blitline_image_versions
+          @blitline_versions ||= [ImageVersion.new(nil)]
+        end
+
+        def process_via_blitline(value = true)
+          @@process_via_blitline = value
+        end
+
+        def process_via_blitline?
+          defined?(@@process_via_blitline) && @@process_via_blitline == true
+        end
+      end
   end
 end

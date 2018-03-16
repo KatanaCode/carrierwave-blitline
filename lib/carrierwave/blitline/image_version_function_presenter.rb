@@ -1,6 +1,5 @@
 module CarrierWave
   module Blitline
-
     # A presenter class for converting an image version to a JSON param for the Blitline
     #   API.
     class ImageVersionFunctionPresenter
@@ -59,7 +58,7 @@ module CarrierWave
           "functions": secondary_functions.map { |function|
             {
               "name": function.name,
-              "params": params_for_function(function.name,function.params),
+              "params": params_for_function(function.name, function.params),
               "save": {
                 "image_identifier": unique_identifier,
                 "s3_destination": {
@@ -76,7 +75,5 @@ module CarrierWave
       end
 
     end
-
   end
-
 end

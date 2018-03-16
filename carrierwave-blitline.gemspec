@@ -5,7 +5,7 @@ require 'carrierwave/blitline/version'
 
 Gem::Specification.new do |spec|
   spec.name          = "carrierwave-blitline"
-  spec.version       = Carrierwave::Blitline::VERSION
+  spec.version       = CarrierWave::Blitline::VERSION
   spec.authors       = ["Bodacious"]
   spec.email         = ["team@katanacode.com"]
 
@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_dependency "blitline", "~> 2.8"
-
+  spec.add_dependency "activesupport", ">= 3.0.0", "<6.0.0"
   spec.add_development_dependency "bundler", "~> 1.13"
   spec.add_development_dependency "rake", "~> 10.0"
 end
