@@ -36,6 +36,9 @@ Style/EmptyMethod:
 Style/FormatString:
   Enabled: false
 
+Style/FormatStringToken:
+  Enabled: false
+
 Rails:
   Enabled: false
 
