@@ -33,6 +33,9 @@ Style/FrozenStringLiteralComment:
 Style/EmptyMethod:
   Enabled: false
 
+Style/FormatString:
+  Enabled: false
+
 Rails:
   Enabled: false
 
@@ -58,3 +61,4 @@ Layout/ExtraSpacing:
 
 Layout/SpaceAroundOperators:
   Enabled: false
+
