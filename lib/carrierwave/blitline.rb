@@ -107,9 +107,9 @@ module CarrierWave
 
     def unique_identifier
       @unique_identifier ||= begin
-        format(UNIQUE_IDENTIFIER_TEMPLATE, app_name: Rails.application.class.name,
-                                           rails_env: Rails.env,
-                                           token: SecureRandom.base64(10))
+        UNIQUE_IDENTIFIER_TEMPLATE % { app_name: Rails.application.class.name,
+                                       rails_env: Rails.env,
+                                       token: SecureRandom.base64(10) }
       end
     end
 
