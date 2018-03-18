@@ -23,7 +23,7 @@ module CarrierWave
 
     ##
     #
-    UNIQUE_IDENTIFIER_TEMPLATE = "%<app_name>_%<rails_env>_%<token>".freeze
+    UNIQUE_IDENTIFIER_TEMPLATE = "%{app_name}_%{rails_env}_%{token}".freeze
 
     # Extends the including class with ClassMethods, add an after_store callback
     # and includes ImageMagick if required.
