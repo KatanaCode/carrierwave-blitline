@@ -36,6 +36,7 @@ module CarrierWave
 
     mattr_accessor :s3_bucket_region
 
+    mattr_accessor :blitline_application_id
 
 
     # =============
