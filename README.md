@@ -74,12 +74,14 @@ Add this to your Carrierwave Uploader files:
 
     end
 
-### ENV Variables
-The following env variables must be set for this to work properly.
+### Configuration
 
-    ENV["BLITLINE_APPLICATION_ID"]
-    ENV["S3_BUCKET_NAME"]
-    ENV["S3_BUCKET_REGION"]
+The following config attributes must be set for this to work properly.
+
+    CarrierWave::Blitline.s3_bucket_name          = ENV["S3_BUCKET_NAME"]
+    CarrierWave::Blitline.s3_bucket_region        = ENV["S3_BUCKET_REGION"]
+    CarrierWave::Blitline.blitline_application_id = ENV["BLITLINE_APPLICATION_ID"]
+
 
 ## Usage
 

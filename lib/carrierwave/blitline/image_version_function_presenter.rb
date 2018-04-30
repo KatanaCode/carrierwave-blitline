@@ -49,8 +49,8 @@ module CarrierWave
             "image_identifier": unique_identifier,
             "s3_destination": {
               "bucket": {
-                "name":     ENV["S3_BUCKET_NAME"],
-                "location": ENV["S3_BUCKET_REGION"]
+                "name": CarrierWave::Blitline.s3_bucket_name,
+                "location": CarrierWave::Blitline.s3_bucket_region
               },
               "key": file_name_for_version(version)
             }
@@ -72,8 +72,8 @@ module CarrierWave
               "image_identifier": unique_identifier,
               "s3_destination": {
                 "bucket": {
-                  "name":     ENV["S3_BUCKET_NAME"],
-                  "location": ENV["S3_BUCKET_REGION"]
+                  "name": CarrierWave::Blitline.s3_bucket_name,
+                  "location": CarrierWave::Blitline.s3_bucket_region
                 },
                 "key": file_name_for_version(version)
               }

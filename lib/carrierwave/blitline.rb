@@ -5,6 +5,7 @@ module CarrierWave
 
     # From the Blitline gem
     require "blitline"
+    require "active_support/core_ext/module/attribute_accessors"
     require "active_support/core_ext/module/delegation"
     require "active_support/concern"
     require "carrierwave/blitline/version"
@@ -30,6 +31,11 @@ module CarrierWave
     included do
       after :store, :rip_process_images
     end
+
+    mattr_accessor :s3_bucket_name
+
+    mattr_accessor :s3_bucket_region
+
 
 
     # =============
@@ -71,7 +77,7 @@ module CarrierWave
     # Returns a Hash of params posted off to Blitline API
     def job_hash
       {
-        "application_id": ENV["BLITLINE_APPLICATION_ID"],
+        "application_id": Carrierwave,
         "src": url,
         "v": BLITLINE_VERSION,
         "functions": functions
