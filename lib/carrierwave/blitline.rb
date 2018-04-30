@@ -78,7 +78,7 @@ module CarrierWave
     # Returns a Hash of params posted off to Blitline API
     def job_hash
       {
-        "application_id": Carrierwave,
+        "application_id": CarrierWave::Blitline.blitline_application_id,
         "src": url,
         "v": BLITLINE_VERSION,
         "functions": functions
